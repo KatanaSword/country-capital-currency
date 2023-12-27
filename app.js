@@ -3,21 +3,23 @@ const chalk = require("chalk");
 const countriesData = require("./database");
 const log = console.log;
 
-let userInput;
-
 function greeting() {
     log("🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸");
     log(chalk.bgWhite.bold("Hello and Welcome to the CCC my friend"));
     log("🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸🌸");
+    userCountry();
 }
 greeting();
 
 function userCountry() {
-    userInput = readlineSync.question(chalk.bgBlue.bold("Please enter your country name:") + " ");
+    let userInput;
+    userInput = readlineSync.question(`${chalk.bgBlue.bold("Please enter your country name:")} `);
     for(let i = 0; i < countriesData.length; i++) {
 
         if(userInput === countriesData[i].name || userInput === countriesData[i].name.toLowerCase()) {
-            log(`${chalk.italic.bold(countriesData[i].name)} - ${chalk.bold(countriesData[i].famousFor)}`);
+            const country = countriesData[i].name;
+            const famous = countriesData[i].famousFor;
+            log(`${chalk.italic.bold(country)} - ${chalk.bold(famous)}`);
             exitOrContinueFunc();
             return;
         };
@@ -25,10 +27,9 @@ function userCountry() {
     log(chalk.bgRed.bold("Invalid entry, Please enter your country name"));
     userCountry();
 };
-userCountry();
 
 function exitOrContinueFunc() {
-    const exitOrContinue = readlineSync.question(chalk.bgMagenta.bold("Do you want to know about other countries [y/n]:") + " ");
+    const exitOrContinue = readlineSync.question(`${chalk.bgMagenta.bold("Do you want to know about other countries [y/n]:")} `);
     if(exitOrContinue === "y") {
         countryCapitalCurrency();
     } else if(exitOrContinue === "n") {
@@ -40,13 +41,16 @@ function exitOrContinueFunc() {
 };
 
 function countryCapitalCurrency() {
-    const wantToKnow = readlineSync.question(chalk.bgCyan.bold("Enter name of the country you want to know about:") + " ");
+    const wantToKnow = readlineSync.question(`${chalk.bgCyan.bold("Enter name of the country you want to know about:")} `);
     for(let i = 0; i < countriesData.length; i++) {
 
         if(wantToKnow === countriesData[i].name || wantToKnow === countriesData[i].name.toLowerCase()) {
-            log(chalk.white.bold("Country: ", countriesData[i].name));
-            log(chalk.white.bold("Capital: ", countriesData[i].capital));
-            log(chalk.white.bold("Currency: ", countriesData[i].currency));
+            const country = countriesData[i].name;
+            const capital = countriesData[i].capital;
+            const currency = countriesData[i].currency;
+            log(chalk.white.bold("Country: ", country));
+            log(chalk.white.bold("Capital: ", capital));
+            log(chalk.white.bold("Currency: ", currency));
             exitOrContinueFunc();
             return;
         };
