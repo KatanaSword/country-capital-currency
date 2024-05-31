@@ -95,3 +95,7 @@ Do you want to know about other countries [y/n]: n
 Thank's for using CCC, Have a great day! Goodbye!
 💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮💮
 ```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
